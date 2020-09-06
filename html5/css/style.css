@@ -1,4 +1,7 @@
-
+* {
+    padding: 0px;
+    margin: 0px;
+}
 
 html {
     font-family: 'Roboto', sans-serif;
@@ -6,16 +9,16 @@ html {
 }
 
 #navigation{
+    display: flex;
     height: 120px;
     background-color: lightgrey;
-    display: flex;
     align-items: center;   /* góra dół */
     justify-content: center; /* lewo-prawo */
+
     position: fixed;
     width: 100vw;
     box-sizing: border-box;
     top: 0;
-    padding: 60px 10px;
     transition: .5s all;
     /* DOM document object model */
 }
@@ -69,6 +72,9 @@ article {
 width: 100rem;
 border: 1px solid lightcoral;
 padding: 2rem 1rem;
+}
+.article2 {
+    width: 100%;
 }
 
 #contactForm {
@@ -136,6 +142,5 @@ input[type=submit] {
     article {
         font-size: 12px;
         font-weight: 300;
-
     }
 }       

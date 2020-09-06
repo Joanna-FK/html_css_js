@@ -121,28 +121,30 @@ console.log(rowerzysciNaZawody);
 //   .then(json => console.log(json))
 
 const data =  new Promise((resolve, rejected) =>{
-    fetch('https://jsonplaceholder.typicode.com/todos')
-  .then(response => resolve(response.json()))
-  .catch(error => rejected(error))
+    fetch('https://jsonplaceholder.typicode.com/todos')//pobieramy dane z APi, zwracamy promise
+  .then(response => resolve(response.json())) //przekazujemy dane z api do metody resolved
+  .catch(error => rejected(error))  //metoda reject zostanie wywołana w przypadku błedu pobierania danycn z API
 });
 
-data
-.then(dataFromApi => console.log(dataFromApi))
+data 
+.then(dataFromApi => console.log(dataFromApi)) 
 .catch(err => console.log(err))
 
-data
-.then(dataFromApi =>{
-    const userTask = dataFromApi.filter((el) => el.userId === 2);
+data // data tpo Promise, który posiada dwie wbudowane metody => then, catch
+.then(dataFromApi =>{ //dane pobrane z API wykorzystujemy do wyświetlenia na stronie
+    const userTask = dataFromApi.filter((el) => el.userId === 2); //tworzymy nową tablicę, poprzez filtrowanie danych z Api. Filtrujemy po polu 'userID' i wartośći '2'
     // console.log(userTask);
-    const documentContainer = document.querySelector('#todoList');
-    userTask.forEach((el) => {
-        const htmlEl = document.createElement('p');
-        htmlEl.innerText = el.title;
-        documentContainer.appendChild(htmlEl);
+    const documentContainer = document.querySelector('#todoList');//wskazujemy kontener w drzewie html (DOM)
+    userTask.forEach((el) => { //pętla forEach wywołana na tablicy z zadaniami dla użytkownika o ID ==2
+        const htmlEl = document.createElement('p'); //tworzymy elementy drzewa HTML (paragraf)
+        htmlEl.innerText = el.title; //do naszego paragrafu wpisujemy tytuł zadania
+        documentContainer.appendChild(htmlEl); //dopisujemy nowy node do naszego wcześniej wskazanego kontenera
     })
 })
 .catch(err => console.log(err))
 
+//wskazujemy kontener
+//document.querySelector().classList.includes('darkMode') ? document.querySelector().classList.add('darkMode') : document.querySelector().classList.remove('darkMode')
 
 
 
