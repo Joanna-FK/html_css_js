@@ -110,11 +110,38 @@ rowerzysci.push(new Rowerzysta('Wigry 8', false, 36));
 console.log(rowerzysci.filter((el, index) => el.kask === true))
 
 const rowerzysciNaZawody = rowerzysci.map((el, index) => {
-    return el.numerStartowy = index
+    const rowerzysta = el;
+    rowerzysta.numerStartowy = index +1
+    return rowerzysta;
 });
 console.log(rowerzysciNaZawody);
 
-    
+// fetch('https://jsonplaceholder.typicode.com/todos/1')
+//   .then(response => response.json())
+//   .then(json => console.log(json))
+
+const data =  new Promise((resolve, rejected) =>{
+    fetch('https://jsonplaceholder.typicode.com/todos')
+  .then(response => resolve(response.json()))
+  .catch(error => rejected(error))
+});
+
+data
+.then(dataFromApi => console.log(dataFromApi))
+.catch(err => console.log(err))
+
+data
+.then(dataFromApi =>{
+    const userTask = dataFromApi.filter((el) => el.userId === 2);
+    // console.log(userTask);
+    const documentContainer = document.querySelector('#todoList');
+    userTask.forEach((el) => {
+        const htmlEl = document.createElement('p');
+        htmlEl.innerText = el.title;
+        documentContainer.appendChild(htmlEl);
+    })
+})
+.catch(err => console.log(err))
 
 
 
